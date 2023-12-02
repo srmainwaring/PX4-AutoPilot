@@ -1,0 +1,163 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="davosdorf">
+
+    <!-- <physics type="ode">
+      <max_step_size>0.004</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
+    </physics> -->
+    <plugin name="gz::sim::systems::Contact"
+    	filename="gz-sim-contact-system">
+    </plugin>
+    <plugin name="gz::sim::systems::ApplyLinkWrench"
+    	filename="gz-sim-apply-link-wrench-system">
+    </plugin>
+
+    <physics name="1ms" type="ignore">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin name="gz::sim::systems::Physics"
+      filename="gz-sim-physics-system">
+    </plugin>
+    <plugin name="gz::sim::systems::Sensors"
+      filename="gz-sim-sensors-system">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin name="gz::sim::systems::UserCommands"
+      filename="gz-sim-user-commands-system">
+    </plugin>
+    <plugin name="gz::sim::systems::SceneBroadcaster"
+      filename="gz-sim-scene-broadcaster-system">
+    </plugin>
+    <plugin name="gz::sim::systems::AirPressure"
+      filename="gz-sim-air-pressure-system">
+    </plugin>
+    <plugin name="gz::sim::systems::Altimeter"
+      filename="gz-sim-altimeter-system">
+    </plugin>
+    <plugin name="gz::sim::systems::Imu"
+      filename="gz-sim-imu-system">
+    </plugin>
+    <plugin name="gz::sim::systems::Magnetometer"
+      filename="gz-sim-magnetometer-system">
+    </plugin>
+    <plugin name="gz::sim::systems::NavSat"
+      filename="gz-sim-navsat-system">
+    </plugin>
+
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type="adiabatic"/>
+
+    <scene>
+      <ambient>1.0 1.0 1.0</ambient>
+      <background>0.8 0.8 0.8</background>
+      <sky></sky>
+    </scene>
+
+    <light name='sunUTC' type='directional'>
+      <pose>0 0 500 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>0.001 0.625 -0.78</direction>
+      <diffuse>0.904 0.904 0.904 1</diffuse>
+      <specular>0.271 0.271 0.271 1</specular>
+      <attenuation>
+        <range>2000</range>
+        <linear>0</linear>
+        <constant>1</constant>
+        <quadratic>0</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+
+    <!-- ENU origin -->
+    <spherical_coordinates>
+      <latitude_deg>46.8132056</latitude_deg>
+      <longitude_deg>9.84795385</longitude_deg>
+      <elevation>1562.0</elevation>
+      <heading_deg>0</heading_deg>
+      <surface_model>EARTH_WGS84</surface_model>
+    </spherical_coordinates>
+
+    <model name="davosdorf">
+      <static>1</static>
+      <link name="terrain">
+        <collision name="collision">
+          <geometry>
+            <heightmap>
+              <pos>-280 -100 971.4</pos>
+              <size>17280 17280 1963.6</size>
+              <uri>media/davosdorf/heightmap_gz.png</uri>
+            </heightmap>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <heightmap>
+              <texture>
+                <diffuse>media/davosdorf/map_gz.jpeg</diffuse>
+                <size>17280.0001</size>
+              </texture>
+              <pos>-280 -100 971.4</pos>
+              <size>17280 17280 1963.6</size>
+              <uri>media/davosdorf/heightmap_gz.png</uri>
+            </heightmap>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <model name='ground_plane'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>1 1</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 1561 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+  </world>
+</sdf>

@@ -15,7 +15,7 @@
     <plugin name='gz::sim::systems::Sensors' filename='gz-sim-sensors-system'>
       <render_engine>ogre2</render_engine>
     </plugin>
-    <gui fullscreen='false'>
+    <!-- <gui fullscreen='false'>
       <plugin name='3D View' filename='GzScene3D'>
         <gz-gui>
           <title>3D View</title>
@@ -66,7 +66,7 @@
         <iterations>1</iterations>
       </plugin>
       <plugin name='Entity tree' filename='EntityTree'/>
-    </gui>
+    </gui> -->
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
     <atmosphere type='adiabatic'/>
@@ -122,7 +122,7 @@
         </inertial>
         <enable_wind>false</enable_wind>
       </link>
-      <pose>0 0 0 0 -0 0</pose>
+      <pose>0 0 1561 0 0 0</pose>
       <self_collide>false</self_collide>
     </model>
     <light name='sunUTC' type='directional'>
