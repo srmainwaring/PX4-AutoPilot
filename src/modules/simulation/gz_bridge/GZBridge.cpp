@@ -122,7 +122,7 @@ int GZBridge::init()
 		bool result;
 		std::string create_service = "/world/" + _world_name + "/create";
 
-		if (_node.Request(create_service, req, 1000, rep, result)) {
+		if (_node.Request(create_service, req, 2000, rep, result)) {
 			if (!rep.data() || !result) {
 				PX4_ERR("EntityFactory service call failed");
 				return PX4_ERROR;
