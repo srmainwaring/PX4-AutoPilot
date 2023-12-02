@@ -1,24 +1,36 @@
 <?xml version="1.0" ?>
+<!--
+  Usage:
+
+  The DEM pose is set so the plane will spawn at global coordinates
+  given by the following environment variables:
+
+  export PX4_HOME_LAT=46.8132056
+  export PX4_HOME_LON=9.8479538
+  export PX4_HOME_ALT=1562.0
+  export PX4_GZ_VERBOSE=4
+  export PX4_GZ_MODEL_POSE="0,0,1562,0,0,0"
+  export PX4_GZ_WORLD=davosdorf
+
+  Start the simulation with:
+
+  make px4_sitl gz_standard_vtol
+
+ -->
 <sdf version="1.9">
   <world name="davosdorf">
-
-    <!-- <physics type="ode">
-      <max_step_size>0.004</max_step_size>
-      <real_time_factor>1.0</real_time_factor>
-      <real_time_update_rate>250</real_time_update_rate>
-    </physics> -->
-    <plugin name="gz::sim::systems::Contact"
-    	filename="gz-sim-contact-system">
-    </plugin>
-    <plugin name="gz::sim::systems::ApplyLinkWrench"
-    	filename="gz-sim-apply-link-wrench-system">
-    </plugin>
 
     <physics name="1ms" type="ignore">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
     </physics>
 
+    <plugin name="gz::sim::systems::Contact"
+    	filename="gz-sim-contact-system">
+    </plugin>
+    <plugin name="gz::sim::systems::ApplyLinkWrench"
+    	filename="gz-sim-apply-link-wrench-system">
+    </plugin>
     <plugin name="gz::sim::systems::Physics"
       filename="gz-sim-physics-system">
     </plugin>
